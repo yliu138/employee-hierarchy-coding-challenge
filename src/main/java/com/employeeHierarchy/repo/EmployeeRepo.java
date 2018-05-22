@@ -14,6 +14,5 @@ import com.employeeHierarchy.models.Employee;
  *
  */
 public interface EmployeeRepo extends JpaRepository<Employee, Long> {
-	Collection<Employee> findEmployeeByid(long id);
 	Collection<Employee> findEmployeeByName(String name);
 }

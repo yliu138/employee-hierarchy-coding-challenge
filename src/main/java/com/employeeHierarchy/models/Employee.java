@@ -15,23 +15,26 @@ import javax.persistence.Id;
 public class Employee {
 	@Id
 	@GeneratedValue
-	private long id;
+	private long employeeId;
 	private String name;
 	private String managerId;
 	
 	public long getId() {
-		return this.id;
+		return this.employeeId;
 	}
+	
+	@SuppressWarnings("unused")
+	private Employee() {} //JPA
 	
 	public Employee(long id, String name, String managerId) {
 		super();
-		this.id = id;
+		this.employeeId = id;
 		this.name = name;
 		this.managerId = managerId;
 	}
 	
 	public void setId(long id) {
-		this.id = id;
+		this.employeeId = id;
 	}
 	
 	public String getName() {
@@ -48,6 +51,11 @@ public class Employee {
 	
 	public void setManagerId(String managerId) {
 		this.managerId = managerId;
+	}
+	
+	@Override
+	public String toString() {
+		return "Employee ID: " + this.employeeId + " Employee name: " + this.name + " Manager ID: " + this.managerId;
 	}
 	
 }
