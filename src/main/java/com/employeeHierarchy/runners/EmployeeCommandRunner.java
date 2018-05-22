@@ -15,7 +15,7 @@ import com.employeeHierarchy.repo.EmployeeRepo;
  *
  */
 @Component
-public class EmployeeCommandRunner implements CommandLineRunner{
+public class EmployeeCommandRunner implements CommandLineRunner {
 	@Autowired
 	EmployeeRepo employeeRepo;
 	
