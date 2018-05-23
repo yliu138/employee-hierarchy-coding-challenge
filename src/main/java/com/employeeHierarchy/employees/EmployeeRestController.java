@@ -8,16 +8,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.employeeHierarchy.models.Employee;
+import com.employeeHierarchy.models.EmployeeTree;
 import com.employeeHierarchy.repo.EmployeeRepo;
 
 /**
- * @author leoliu
- *
+ * @author Leo Liu
+ *  
  */
 @RestController
 @RequestMapping("/employee")
@@ -35,12 +37,39 @@ public class EmployeeRestController {
 		return this.employeeRepo.findAll();
 	}
 	
-	@GetMapping("/map")
-	Map<Long, Employee> getAllEmployeeMap() {
-		Map<Long, Employee> employeeMap = new HashMap<Long, Employee>();
-		for (Employee e: this.employeeRepo.findAll()) {
-			employeeMap.put(e.getId(), e);
+	@GetMapping(path = "/tree", produces = MediaType.APPLICATION_JSON_VALUE)
+	public EmployeeTree getEmployeeTree() {
+		Collection<Employee> employeeList = this.employeeRepo.findAll();
+		Map<Long, EmployeeTree> employeeMap = new HashMap<Long, EmployeeTree>();
+		EmployeeTree ceo = null;
+		
+		// to build the employee Map
+		for (Employee e: employeeList) {
+			employeeMap.put(e.getId(), new EmployeeTree(e.getId(), e.getName()));
 		}
-		return employeeMap;
+		
+		
+		// to build the employee tree
+		for (Employee e: employeeList) {
+			if (e.getManagerId() == -1) {
+				ceo = employeeMap.get(e.getId());
+			} else {
+				EmployeeTree manager = employeeMap.get(e.getManagerId());
+				employeeMap.get(e.getId()).addManagerList(manager);
+				manager.addSubornateList(employeeMap.get(e.getId()));
+			}
+		}
+		
+		System.out.println(ceo + "===");
+		
+		return ceo;
 	}
+	
+//	private Map<Long, Employee> getAllEmployeeMap() {
+//		Map<Long, Employee> employeeMap = new HashMap<Long, Employee>();
+//		for (Employee e: this.employeeRepo.findAll()) {
+//			employeeMap.put(e.getId(), e);
+//		}
+//		return employeeMap;
+//	}
 }

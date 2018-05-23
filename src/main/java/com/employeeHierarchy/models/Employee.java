@@ -17,7 +17,7 @@ public class Employee {
 	@GeneratedValue
 	private long employeeId;
 	private String name;
-	private String managerId;
+	private long managerId;
 	
 	public long getId() {
 		return this.employeeId;
@@ -26,7 +26,7 @@ public class Employee {
 	@SuppressWarnings("unused")
 	private Employee() {} //JPA
 	
-	public Employee(long id, String name, String managerId) {
+	public Employee(long id, String name, long managerId) {
 		super();
 		this.employeeId = id;
 		this.name = name;
@@ -45,11 +45,11 @@ public class Employee {
 		this.name = name;
 	}
 	
-	public String getManagerId() {
+	public long getManagerId() {
 		return this.managerId;
 	}
 	
-	public void setManagerId(String managerId) {
+	public void setManagerId(long managerId) {
 		this.managerId = managerId;
 	}
 	
