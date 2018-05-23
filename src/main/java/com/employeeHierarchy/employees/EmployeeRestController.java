@@ -22,8 +22,13 @@ import com.employeeHierarchy.repo.EmployeeRepo;
 @RestController
 @RequestMapping("/employee")
 public class EmployeeRestController {
+	
+	private final EmployeeRepo employeeRepo;
+	
 	@Autowired
-	EmployeeRepo employeeRepo;
+	public EmployeeRestController(EmployeeRepo employeeRepo) {
+		this.employeeRepo = employeeRepo;
+	}
 	
 	@GetMapping
 	Collection<Employee> getAllEmployee() {
