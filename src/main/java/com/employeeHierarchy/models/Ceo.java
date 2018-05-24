@@ -16,8 +16,8 @@ import javax.persistence.Entity;
 @DiscriminatorValue("CEO")
 public class Ceo extends Employee {
 
-	public Ceo(long id, String name, long managerId) {
-		super(id, name, managerId);
+	public Ceo(long id, long employeeId, String name, long managerId) {
+		super(id, employeeId, name, managerId);
 	}
 	
 	@SuppressWarnings("unused")

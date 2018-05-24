@@ -8,9 +8,11 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
@@ -23,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 @Entity
+@SequenceGenerator(name="seq", initialValue=1)
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorFormula(
 		"CASE WHEN managerId IS NOT -1 THEN 'NORMAL' " +
@@ -30,7 +33,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 )
 public abstract class Employee {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+	@NotNull
+	private long id;
+	
 	@NotNull
 	private long employeeId;
 	@NotNull
@@ -55,15 +61,24 @@ public abstract class Employee {
 		this.managerList = new LinkedList<Long>();
 	} //JPA
 	
-	public Employee(long id, String name, long managerId) {
+	public Employee(long id, long employeeId, String name, long managerId) {
 		super();
-		this.employeeId = id;
+		this.id = id;
+		this.employeeId = employeeId;
 		this.name = name;
 		this.managerId = managerId;
 		this.subordinateList = new LinkedList<Long>();
 		this.managerList = new LinkedList<Long>();
 	}
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return this.name;
 	}
