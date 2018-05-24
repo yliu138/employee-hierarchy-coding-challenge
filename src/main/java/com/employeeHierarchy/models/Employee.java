@@ -114,6 +114,6 @@ public abstract class Employee {
 	
 	@Override
 	public String toString() {
-		return "Employee ID: " + this.employeeId + " Employee name: " + this.name + "\nSubordinate List: " + this.managerList.toString();
+		return "Employee ID: " + this.employeeId + " Employee name: " + this.name + "\nSubordinate List: " + this.managerList.toString() + "\n";
 	}
 }

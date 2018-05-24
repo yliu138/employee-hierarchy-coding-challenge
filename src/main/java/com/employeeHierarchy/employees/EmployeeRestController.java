@@ -32,11 +32,11 @@ public class EmployeeRestController {
 		return this.employeeRepo.findAll();
 	}
 	
-	@GetMapping(path = "/tree", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Map<Long, Employee> getEmployeeTree() {
+	@GetMapping(path = "/map", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Object> getEmployeeMap() {
 		Collection<Employee> employeeList = this.employeeRepo.findAll();
 		Map<Long, Employee> employeeMap = new HashMap<Long, Employee>();
-		Employee ceo = null;
+		long ceoId = -1;
 		
 		// to build the employee Map
 		for (Employee e: employeeList) {
@@ -50,17 +50,15 @@ public class EmployeeRestController {
 			e.addManagerList(manager);
 			if (!e.isCeo()) {
 				manager.addSubordinateList(e.getEmployeeId());
+			} else {
+				ceoId = e.getEmployeeId();
 			}
 		}
 		
-		return employeeMap;
+		Map<String, Object> entity = new HashMap<String, Object>();
+		entity.put("ceoId", ceoId);
+		entity.put("map", employeeMap);
+		
+		return entity;
 	}
-	
-//	private Map<Long, Employee> getAllEmployeeMap() {
-//		Map<Long, Employee> employeeMap = new HashMap<Long, Employee>();
-//		for (Employee e: this.employeeRepo.findAll()) {
-//			employeeMap.put(e.getEmployeeId(), e);
-//		}
-//		return employeeMap;
-//	}
 }

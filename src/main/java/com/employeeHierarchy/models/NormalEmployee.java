@@ -38,7 +38,7 @@ public class NormalEmployee extends Employee{
 	@Override
 	public void addManagerList(Employee m) {
 		if (m != null) {
-			this.subordinateList.add(m.getEmployeeId());
+			this.managerList.add(m.getEmployeeId());
 		}
 	}
 
