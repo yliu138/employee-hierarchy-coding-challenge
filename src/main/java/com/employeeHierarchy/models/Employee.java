@@ -6,13 +6,13 @@ package com.employeeHierarchy.models;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
@@ -25,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 @Entity
-@SequenceGenerator(name="seq", initialValue=1)
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorFormula(
 		"CASE WHEN managerId IS NOT -1 THEN 'NORMAL' " +
@@ -33,8 +32,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 )
 public abstract class Employee {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
-	@NotNull
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, unique = true)
 	@JsonIgnore
 	private long id;
 	
