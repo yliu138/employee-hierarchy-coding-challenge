@@ -1,6 +1,7 @@
 ## Assumption
 1. There is only one CEO on the top level
 2. The manager ID with the CEO is set to -1
+3. A invalid employee has an employee ID of -1
 
 
 ## How to start
