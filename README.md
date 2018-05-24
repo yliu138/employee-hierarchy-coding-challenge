@@ -7,6 +7,11 @@
 
 ## Test
 
+## Design pattern used
+1. IoC: mainly depedency injection
+2. Factory
+3. Singleton as the employeeHelper might be used in other places through the project
+
 
 This restful API uses Spring boot, h2 with JUnit test framework
 

@@ -105,9 +105,10 @@ public abstract class Employee {
 		this.managerList.add(id);
 	}
 	
+	public abstract boolean isCeo();
+	
 	@Override
 	public String toString() {
 		return "Employee ID: " + this.employeeId + " Employee name: " + this.name + "\nSubordinate List: " + this.managerList.toString();
 	}
-	
 }

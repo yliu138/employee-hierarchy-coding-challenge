@@ -23,4 +23,9 @@ public class NormalEmployee extends Employee{
 		super();
 	}
 
+	@Override
+	public boolean isCeo() {
+		return false;
+	}
+
 }

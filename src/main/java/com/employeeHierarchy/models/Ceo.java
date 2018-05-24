@@ -22,4 +22,20 @@ public class Ceo extends Employee {
 	private Ceo() {
 		super();
 	}
+
+	@Override
+	public boolean isCeo() {
+		return true;
+	}
+	
+	@Override
+	public void addManagerList(long id) {
+		//DO NOTHING: AS CEO WON'T NEED ANY MANAGER ID
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Employee ID: " + this.getEmployeeId() + " Employee name: " + this.getName() + " with Role: CEO " + "\nSubordinate List: " + this.managerList.toString();
+	}
 }
