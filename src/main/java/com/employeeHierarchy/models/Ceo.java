@@ -3,6 +3,8 @@
  */
 package com.employeeHierarchy.models;
 
+import java.util.List;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -31,6 +33,11 @@ public class Ceo extends Employee {
 	@Override
 	public void addManagerList(long id) {
 		//DO NOTHING: AS CEO WON'T NEED ANY MANAGER ID
+	}
+	
+	@Override
+	public void setManagerList(List<Long> managerList) {
+		//DO NOTHING
 	}
 	
 	
