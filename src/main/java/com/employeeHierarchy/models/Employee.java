@@ -35,6 +35,7 @@ public abstract class Employee {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
 	@NotNull
+	@JsonIgnore
 	private long id;
 	
 	@NotNull
