@@ -41,6 +41,9 @@ public class EmployeeRestController {
 		// to build the employee Map
 		for (Employee e: employeeList) {
 			employeeMap.put(e.getEmployeeId(), e);
+			if (e.isCeo()) {
+				ceoId = e.getEmployeeId();
+			}
 		}
 		
 		
@@ -50,8 +53,6 @@ public class EmployeeRestController {
 			e.addManagerList(manager);
 			if (!e.isCeo()) {
 				manager.addSubordinateList(e.getEmployeeId());
-			} else {
-				ceoId = e.getEmployeeId();
 			}
 		}
 		
