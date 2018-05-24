@@ -3,9 +3,15 @@
  */
 package com.employeeHierarchy.models;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author leo liu
@@ -17,10 +23,19 @@ public class Employee {
 	@GeneratedValue
 	private long employeeId;
 	private String name;
+	@JsonIgnore
 	private long managerId;
+	@Transient
+	private List<Long> subordinateList = new LinkedList<Long>();
+	@Transient
+	private List<Long> managerList = new LinkedList<Long>();
 	
-	public long getId() {
-		return this.employeeId;
+	public long getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(long employeeId) {
+		this.employeeId = employeeId;
 	}
 	
 	@SuppressWarnings("unused")
@@ -31,10 +46,6 @@ public class Employee {
 		this.employeeId = id;
 		this.name = name;
 		this.managerId = managerId;
-	}
-	
-	public void setId(long id) {
-		this.employeeId = id;
 	}
 	
 	public String getName() {
@@ -53,9 +64,34 @@ public class Employee {
 		this.managerId = managerId;
 	}
 	
+	public List<Long> getSubordinateList() {
+		return subordinateList;
+	}
+
+	public void setSubordinateList(List<Long> subordinateList) {
+		this.subordinateList = subordinateList;
+	}
+
+	public List<Long> getManagerList() {
+		return managerList;
+	}
+
+	public void setManagerList(List<Long> managerList) {
+		this.managerList = managerList;
+	}
+	
+	//Add an manager id to the subordinate and manger lists
+	public void addSubordinateList(long id) {
+		this.subordinateList.add(id);
+	}
+	
+	public void addManagerList(long id) {
+		this.managerList.add(id);
+	}
+	
 	@Override
 	public String toString() {
-		return "Employee ID: " + this.employeeId + " Employee name: " + this.name + " Manager ID: " + this.managerId;
+		return "Employee ID: " + this.employeeId + " Employee name: " + this.name + " Subordinate List: " + this.managerList.toString();
 	}
 	
 }
