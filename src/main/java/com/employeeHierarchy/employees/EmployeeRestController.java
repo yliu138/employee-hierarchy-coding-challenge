@@ -52,7 +52,7 @@ public class EmployeeRestController {
 			Employee manager = employeeMap.get(e.getManagerId());
 			e.addManagerList(manager);
 			if (!e.isCeo()) {
-				manager.addSubordinateList(e.getEmployeeId());
+				manager.addSubordinateList(e);
 			}
 		}
 		

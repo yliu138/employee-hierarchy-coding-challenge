@@ -27,8 +27,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorFormula(
-		"CASE WHEN managerId IS NOT -1 THEN 'NORMAL' " +
-		" WHEN managerId IS -1 THEN 'CEO' END"
+		"CASE WHEN employeeId IS -1 THEN 'INVALID' " +
+		"WHEN managerId IS NOT -1 AND employeeId IS NOT -1 THEN 'NORMAL' " +
+		" WHEN managerId IS -1 AND employeeId IS NOT -1 THEN 'CEO' END"
 )
 public abstract class Employee {
 	@Id
@@ -113,19 +114,24 @@ public abstract class Employee {
 	
 	//Add an manager id to the subordinate and manger lists
 	public void addSubordinateList(long id) {
-		this.subordinateList.add(id);
+		if (id > 0) {
+			this.subordinateList.add(id);
+		}
 	}
 	
 	// overwrite
 	public abstract void addSubordinateList(Employee s);
 	
 	public void addManagerList(long id) {
-		this.managerList.add(id);
+		if (id > 0) {
+			this.managerList.add(id);
+		}
 	}
 	
 	public abstract void addManagerList(Employee m);
 	
 	public abstract boolean isCeo();
+	public abstract boolean isValidEmployee();
 	
 	@Override
 	public String toString() {

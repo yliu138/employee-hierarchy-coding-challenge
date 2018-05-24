@@ -30,16 +30,21 @@ public class NormalEmployee extends Employee{
 
 	@Override
 	public void addSubordinateList(Employee s) {
-		if (s != null) {
+		if (s != null && s.isValidEmployee()) {
 			this.subordinateList.add(s.getEmployeeId());
 		}
 	}
 
 	@Override
 	public void addManagerList(Employee m) {
-		if (m != null) {
+		if (m != null && m.isValidEmployee()) {
 			this.managerList.add(m.getEmployeeId());
 		}
+	}
+
+	@Override
+	public boolean isValidEmployee() {
+		return true;
 	}
 
 }

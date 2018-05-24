@@ -48,7 +48,7 @@ public class Ceo extends Employee {
 
 	@Override
 	public void addSubordinateList(Employee s) {
-		if (s != null) {
+		if (s != null && s.isValidEmployee()) {
 			this.subordinateList.add(s.getEmployeeId());
 		}
 	}
@@ -57,5 +57,10 @@ public class Ceo extends Employee {
 	public void addManagerList(Employee m) {
 		// DO NOTHING
 		
+	}
+
+	@Override
+	public boolean isValidEmployee() {
+		return true;
 	}
 }
