@@ -43,7 +43,7 @@ public class Ceo extends Employee {
 	
 	@Override
 	public String toString() {
-		return "Employee ID: " + this.getEmployeeId() + " Employee name: " + this.getName() + " with Role: CEO " + "\nSubordinate List: " + this.managerList.toString();
+		return "ID: " + this.getId() + "Employee ID: " + this.getEmployeeId() + " Employee name: " + this.getName() + " with Role: CEO " + "\nSubordinate List: " + this.managerList.toString();
 	}
 
 	@Override

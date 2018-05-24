@@ -15,3 +15,6 @@ insert into employee(employeeId, name, managerId)
 
 insert into employee(employeeId, name, managerId)
 	values(190, 'David', 400);
+	
+insert into employee(employeeId, name, managerId)
+	values(-1, 'Tom', 400);
