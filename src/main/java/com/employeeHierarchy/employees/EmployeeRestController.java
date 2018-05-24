@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.employeeHierarchy.models.Employee;
-import com.employeeHierarchy.models.EmployeeTree;
 import com.employeeHierarchy.repo.EmployeeRepo;
 
 /**
@@ -34,31 +33,27 @@ public class EmployeeRestController {
 	}
 	
 	@GetMapping(path = "/tree", produces = MediaType.APPLICATION_JSON_VALUE)
-	public EmployeeTree getEmployeeTree() {
+	public Map<Long, Employee> getEmployeeTree() {
 		Collection<Employee> employeeList = this.employeeRepo.findAll();
-		Map<Long, EmployeeTree> employeeMap = new HashMap<Long, EmployeeTree>();
-		EmployeeTree ceo = null;
+		Map<Long, Employee> employeeMap = new HashMap<Long, Employee>();
+		Employee ceo = null;
 		
 		// to build the employee Map
 		for (Employee e: employeeList) {
-			employeeMap.put(e.getEmployeeId(), new EmployeeTree(e.getEmployeeId(), e.getName()));
+			employeeMap.put(e.getEmployeeId(), e);
 		}
 		
 		
 		// to build the employee tree
 		for (Employee e: employeeList) {
-			if (e.getManagerId() == -1) {
-				ceo = employeeMap.get(e.getEmployeeId());
-			} else {
-				EmployeeTree manager = employeeMap.get(e.getManagerId());
-				employeeMap.get(e.getEmployeeId()).addManagerList(manager);
-				manager.addSubornateList(employeeMap.get(e.getEmployeeId()));
+			Employee manager = employeeMap.get(e.getManagerId());
+			e.addManagerList(manager);
+			if (!e.isCeo()) {
+				manager.addSubordinateList(e.getEmployeeId());
 			}
 		}
 		
-		System.out.println(ceo + "===");
-		
-		return ceo;
+		return employeeMap;
 	}
 	
 //	private Map<Long, Employee> getAllEmployeeMap() {

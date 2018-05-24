@@ -45,4 +45,17 @@ public class Ceo extends Employee {
 	public String toString() {
 		return "Employee ID: " + this.getEmployeeId() + " Employee name: " + this.getName() + " with Role: CEO " + "\nSubordinate List: " + this.managerList.toString();
 	}
+
+	@Override
+	public void addSubordinateList(Employee s) {
+		if (s != null) {
+			this.subordinateList.add(s.getEmployeeId());
+		}
+	}
+
+	@Override
+	public void addManagerList(Employee m) {
+		// DO NOTHING
+		
+	}
 }

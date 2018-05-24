@@ -101,9 +101,14 @@ public abstract class Employee {
 		this.subordinateList.add(id);
 	}
 	
+	// overwrite
+	public abstract void addSubordinateList(Employee s);
+	
 	public void addManagerList(long id) {
 		this.managerList.add(id);
 	}
+	
+	public abstract void addManagerList(Employee m);
 	
 	public abstract boolean isCeo();
 	

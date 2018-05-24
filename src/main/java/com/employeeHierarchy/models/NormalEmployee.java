@@ -28,4 +28,18 @@ public class NormalEmployee extends Employee{
 		return false;
 	}
 
+	@Override
+	public void addSubordinateList(Employee s) {
+		if (s != null) {
+			this.subordinateList.add(s.getEmployeeId());
+		}
+	}
+
+	@Override
+	public void addManagerList(Employee m) {
+		if (m != null) {
+			this.subordinateList.add(m.getEmployeeId());
+		}
+	}
+
 }

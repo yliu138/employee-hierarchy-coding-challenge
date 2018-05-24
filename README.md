@@ -20,5 +20,5 @@ Composite design pattern
 
 Use this code to start the back end
 ```java
-	mvn spring-boot:run
+	mvn spring-boot:run -q
 ```
