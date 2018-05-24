@@ -26,9 +26,9 @@ public class Employee {
 	@JsonIgnore
 	private long managerId;
 	@Transient
-	private List<Long> subordinateList = new LinkedList<Long>();
+	private List<Long> subordinateList;
 	@Transient
-	private List<Long> managerList = new LinkedList<Long>();
+	private List<Long> managerList;
 	
 	public long getEmployeeId() {
 		return employeeId;
@@ -39,13 +39,18 @@ public class Employee {
 	}
 	
 	@SuppressWarnings("unused")
-	private Employee() {} //JPA
+	private Employee() {
+		this.subordinateList = new LinkedList<Long>();
+		this.managerList = new LinkedList<Long>();
+	} //JPA
 	
 	public Employee(long id, String name, long managerId) {
 		super();
 		this.employeeId = id;
 		this.name = name;
 		this.managerId = managerId;
+		this.subordinateList = new LinkedList<Long>();
+		this.managerList = new LinkedList<Long>();
 	}
 	
 	public String getName() {
@@ -91,7 +96,7 @@ public class Employee {
 	
 	@Override
 	public String toString() {
-		return "Employee ID: " + this.employeeId + " Employee name: " + this.name + " Subordinate List: " + this.managerList.toString();
+		return "Employee ID: " + this.employeeId + " Employee name: " + this.name + "\nSubordinate List: " + this.managerList.toString();
 	}
 	
 }
