@@ -7,6 +7,12 @@
 ## How to start
 
 ## Test
+### Back-end test
+#### Code coverage test
+1. tools: Jacoc and Sonar
+2. How to start the test ```java
+	mvn clean test
+```
 
 ## Design pattern used
 1. IoC: mainly depedency injection
