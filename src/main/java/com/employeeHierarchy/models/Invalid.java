@@ -68,4 +68,9 @@ public class Invalid extends Employee {
 		return false;
 	}
 	
+	@Override
+	public String toString() {
+		return "Invalid: " + "ID: " + this.getId() + "Employee ID: " + this.getEmployeeId() + " Employee name: " + this.getName() + "\nSubordinate List: " + this.managerList.toString() + "\n";
+	}
+	
 }

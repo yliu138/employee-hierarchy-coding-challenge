@@ -27,9 +27,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorFormula(
-		"CASE WHEN employeeId IS -1 THEN 'INVALID' " +
-		"WHEN managerId IS NOT -1 AND employeeId IS NOT -1 THEN 'NORMAL' " +
-		" WHEN managerId IS -1 AND employeeId IS NOT -1 THEN 'CEO' END"
+		"CASE WHEN employeeId < 0 THEN 'INVALID' " +
+		"WHEN managerId IS NOT -1 AND employeeId >= 0 THEN 'NORMAL' " +
+		" WHEN managerId IS -1 AND employeeId >= 0 THEN 'CEO' END"
 )
 public abstract class Employee {
 	@Id
