@@ -4,6 +4,7 @@
 package com.employeeHierarchy.repo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.junit.Before;
@@ -44,7 +45,7 @@ public class EmployeeRepoTest {
 	
 	@Test
 	public void whenFindAll_thenReturnAllEmployee() {
-//		Employee test = new Employee()
 		String name = "Tom";
+//		Collection<Employee> all = 
 	}
 }
