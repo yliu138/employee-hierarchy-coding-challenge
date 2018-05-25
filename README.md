@@ -5,6 +5,10 @@
 
 
 ## How to start
+Use this code to start the back end
+```java
+	mvn spring-boot:run -q
+```
 
 ## Test
 ### Back-end test
@@ -21,11 +25,3 @@
 
 
 This restful API uses Spring boot, h2 with JUnit test framework
-
-IoC design pattern
-Composite design pattern
-
-Use this code to start the back end
-```java
-	mvn spring-boot:run -q
-```
