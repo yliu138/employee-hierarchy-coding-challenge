@@ -189,6 +189,7 @@ public class EmployeeControllerTest {
 		
 		this.mockMvc.perform(get("/employee/map"))
 		.andDo(print())
-		.andExpect(arg0)
+		.andExpect(status().is5xxServerError())
+		.andExpect(status().reason(containsString("Malformed data")));
 	}
 }
