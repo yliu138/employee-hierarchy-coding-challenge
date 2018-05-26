@@ -53,11 +53,11 @@ public class EmployeeRestController {
 		}
 		
 		
-		// to build the employee tree
+		// to fill out all the subordinate and manger lists
 		for (Employee e: employeeList) {
 			Employee manager = employeeMap.get(e.getManagerId());
 			e.addManagerList(manager);
-			if (!e.isCeo()) {
+			if (manager != null) {
 				manager.addSubordinateList(e);
 			}
 		}

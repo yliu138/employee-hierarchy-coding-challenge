@@ -118,8 +118,31 @@ public class EmployeeControllerTest {
 		return employeeList;
 	}
 	
+	private List<Employee> generateNonExistingManager() {
+		List<Employee> employeeList = new ArrayList<Employee>();
+		
+		Employee test1 = new NormalEmployee(100, "Tom", 200);
+		test1.setId(1);
+		
+		Employee test2 = new NormalEmployee(200, "Nick", 150);
+		test2.setId(2);
+		
+		Employee test3 = new Ceo(150, "Jamie", 0);
+		test3.setId(3);
+		
+		Employee test4 = new NormalEmployee(300, "Has Non-exisitng manager", 600);
+		test4.setId(4);
+	
+		
+		employeeList.add(test1);
+		employeeList.add(test2);
+		employeeList.add(test3);
+		employeeList.add(test4);
+		
+		return employeeList;
+	}
+	
 	@Test
-	@Ignore
 	public void whenFindAll_thenReturnAllEmployee() throws Exception {
 		this.mockMvc.perform(get("/employee"))
 			.andDo(print())
@@ -134,7 +157,6 @@ public class EmployeeControllerTest {
 	}
 	
 	@Test
-	@Ignore
 	public void whenGetMap_thenReturnValidMap() throws Exception {
 		this.mockMvc.perform(get("/employee/map"))
 		.andDo(print())
@@ -164,7 +186,6 @@ public class EmployeeControllerTest {
 	}
 	
 	@Test
-	@Ignore
 	public void whenGetMap_allUnvalidEmployee_returnWithAllEmptySubordinateManagerLists() throws Exception {
 		//To set up the mock response
 		Mockito.when(this.employeeRepo.findAll())
@@ -182,7 +203,7 @@ public class EmployeeControllerTest {
 	}
 	
 	@Test
-	public void whenGetMap_noCEO_returnEmptyMap() throws Exception {
+	public void whenGetMap_noCEO_returnError() throws Exception {
 		//To set up the mock response
 		Mockito.when(this.employeeRepo.findAll())
 			.thenReturn(this.generateNoCeo());
@@ -191,5 +212,22 @@ public class EmployeeControllerTest {
 		.andDo(print())
 		.andExpect(status().is5xxServerError())
 		.andExpect(status().reason(containsString("Malformed data")));
+	}
+	
+	@Test
+	public void whenGetMap_employeeWithNonexistingManager() throws Exception{
+		//To set up the mock response
+		Mockito.when(this.employeeRepo.findAll())
+			.thenReturn(this.generateNonExistingManager());
+		
+		this.mockMvc.perform(get("/employee/map"))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("$.map.300.employeeId", is(300)))
+		.andExpect(jsonPath("$.map.300.name", is("Has Non-exisitng manager")))
+		.andExpect(jsonPath("$.map.300.subordinateList", hasSize(0)))
+		.andExpect(jsonPath("$.map.300.managerList", hasSize(0)))
+		.andExpect(jsonPath("$.map.300.ceo", is(false)))
+		.andExpect(jsonPath("$.map.300.validEmployee", is(true)));
 	}
 }
