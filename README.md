@@ -1,6 +1,6 @@
 ## Assumption
 1. There is only one CEO on the top level
-2. The manager ID with the CEO is set to -1
+2. The manager ID with the CEO is set to 0
 3. A invalid employee has an employee ID of less than 0
 
 ## Technology used
