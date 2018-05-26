@@ -118,6 +118,12 @@ public class EmployeeControllerTest {
 		.andExpect(jsonPath("$.map.150.subordinateList", contains(100, 400)))
 		.andExpect(jsonPath("$.map.150.managerList", hasSize(0)))
 		.andExpect(jsonPath("$.map.150.ceo", is(true)))
-		.andExpect(jsonPath("$.map.150.validEmployee", is(true)));
+		.andExpect(jsonPath("$.map.150.validEmployee", is(true)))
+		.andExpect(jsonPath("$.map.-1.employeeId", is(-1)))
+		.andExpect(jsonPath("$.map.-1.name", is("Tom")))
+		.andExpect(jsonPath("$.map.-1.subordinateList", hasSize(0)))
+		.andExpect(jsonPath("$.map.-1.managerList", hasSize(0)))
+		.andExpect(jsonPath("$.map.-1.ceo", is(false)))
+		.andExpect(jsonPath("$.map.-1.validEmployee", is(false)));
 	}
 }
