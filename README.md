@@ -1,5 +1,5 @@
 ## Assumption
-1. There is only one CEO on the top level
+1. There is and should have only one CEO on the top level. If there is no CEO, the service will return an error
 2. The manager ID with the CEO is set to 0
 3. A invalid employee has an employee ID of less than 0
 

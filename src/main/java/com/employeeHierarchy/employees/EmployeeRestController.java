@@ -34,6 +34,8 @@ public class EmployeeRestController {
 	
 	@GetMapping(path = "/map", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Map<String, Object> getEmployeeMap() {
+		Map<String, Object> entity = new HashMap<String, Object>();
+		
 		Collection<Employee> employeeList = this.employeeRepo.findAll();
 		Map<Long, Employee> employeeMap = new HashMap<Long, Employee>();
 		long ceoId = -1;
@@ -46,6 +48,10 @@ public class EmployeeRestController {
 			}
 		}
 		
+		if (ceoId == -1) {
+			throw new InvalidDataException();
+		}
+		
 		
 		// to build the employee tree
 		for (Employee e: employeeList) {
@@ -56,7 +62,7 @@ public class EmployeeRestController {
 			}
 		}
 		
-		Map<String, Object> entity = new HashMap<String, Object>();
+		
 		entity.put("ceoId", ceoId);
 		entity.put("map", employeeMap);
 		

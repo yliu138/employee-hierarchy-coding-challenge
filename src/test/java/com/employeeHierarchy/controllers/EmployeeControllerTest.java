@@ -108,8 +108,9 @@ public class EmployeeControllerTest {
 		Employee test1 = new NormalEmployee(100, "Tom", 200);
 		test1.setId(1);
 		
-		Employee test2 = new Invalid(200, "Nick", 150);
+		Employee test2 = new NormalEmployee(200, "Nick", 150);
 		test2.setId(2);
+	
 		
 		employeeList.add(test1);
 		employeeList.add(test2);
@@ -171,6 +172,7 @@ public class EmployeeControllerTest {
 		
 		this.mockMvc.perform(get("/employee/map"))
 		.andDo(print())
+		.andExpect(status().isOk())
 		.andExpect(jsonPath("$.map.150.employeeId", is(150)))
 		.andExpect(jsonPath("$.map.150.name", is("Jamie")))
 		.andExpect(jsonPath("$.map.150.subordinateList", hasSize(0)))
@@ -186,6 +188,7 @@ public class EmployeeControllerTest {
 			.thenReturn(this.generateNoCeo());
 		
 		this.mockMvc.perform(get("/employee/map"))
-		.andDo(print());
+		.andDo(print())
+		.andExpect(arg0)
 	}
 }
