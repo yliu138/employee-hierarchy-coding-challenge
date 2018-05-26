@@ -84,8 +84,6 @@ public class EmployeeControllerTest {
 	
 	@Test
 	public void whenFindAll_thenReturnAllEmployee() throws Exception {
-//		String body = this.restTemplate.getForObject("/employee", String.class);
-//		System.out.println(body);
 		this.mockMvc.perform(get("/employee"))
 			.andDo(print())
 			.andExpect(status().isOk())
