@@ -102,6 +102,21 @@ public class EmployeeControllerTest {
 		return employeeList;
 	}
 	
+	private List<Employee> generateNoCeo() {
+		List<Employee> employeeList = new ArrayList<Employee>();
+		
+		Employee test1 = new NormalEmployee(100, "Tom", 200);
+		test1.setId(1);
+		
+		Employee test2 = new Invalid(200, "Nick", 150);
+		test2.setId(2);
+		
+		employeeList.add(test1);
+		employeeList.add(test2);
+		
+		return employeeList;
+	}
+	
 	@Test
 	@Ignore
 	public void whenFindAll_thenReturnAllEmployee() throws Exception {
@@ -148,10 +163,27 @@ public class EmployeeControllerTest {
 	}
 	
 	@Test
+	@Ignore
 	public void whenGetMap_allUnvalidEmployee_returnWithAllEmptySubordinateManagerLists() throws Exception {
 		//To set up the mock response
 		Mockito.when(this.employeeRepo.findAll())
 		.thenReturn(this.generateInvalidData());
+		
+		this.mockMvc.perform(get("/employee/map"))
+		.andDo(print())
+		.andExpect(jsonPath("$.map.150.employeeId", is(150)))
+		.andExpect(jsonPath("$.map.150.name", is("Jamie")))
+		.andExpect(jsonPath("$.map.150.subordinateList", hasSize(0)))
+		.andExpect(jsonPath("$.map.150.managerList", hasSize(0)))
+		.andExpect(jsonPath("$.map.150.ceo", is(true)))
+		.andExpect(jsonPath("$.map.150.validEmployee", is(true)));
+	}
+	
+	@Test
+	public void whenGetMap_noCEO_returnEmptyMap() throws Exception {
+		//To set up the mock response
+		Mockito.when(this.employeeRepo.findAll())
+			.thenReturn(this.generateNoCeo());
 		
 		this.mockMvc.perform(get("/employee/map"))
 		.andDo(print());
