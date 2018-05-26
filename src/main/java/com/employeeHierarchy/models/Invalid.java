@@ -16,8 +16,8 @@ import javax.persistence.Entity;
 @DiscriminatorValue("INVALID")
 public class Invalid extends Employee {
 	
-	public Invalid(long id, long employeeId, String name, long managerId) {
-		super(id, employeeId, name, managerId);
+	public Invalid(long employeeId, String name, long managerId) {
+		super(employeeId, name, managerId);
 	}
 	
 	@SuppressWarnings("unused")
@@ -70,7 +70,7 @@ public class Invalid extends Employee {
 	
 	@Override
 	public String toString() {
-		return "Invalid: " + "ID: " + this.getId() + "Employee ID: " + this.getEmployeeId() + " Employee name: " + this.getName() + "\nSubordinate List: " + this.managerList.toString() + "\n";
+		return "Invalid: " + "ID: " + this.getId() + " Employee ID: " + this.getEmployeeId() + " Employee name: " + this.getName() + "\nSubordinate List: " + this.managerList.toString() + "\n";
 	}
 	
 }

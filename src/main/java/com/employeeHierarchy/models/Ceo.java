@@ -16,8 +16,8 @@ import javax.persistence.Entity;
 @DiscriminatorValue("CEO")
 public class Ceo extends Employee {
 
-	public Ceo(long id, long employeeId, String name, long managerId) {
-		super(id, employeeId, name, managerId);
+	public Ceo(long employeeId, String name, long managerId) {
+		super(employeeId, name, managerId);
 	}
 	
 	@SuppressWarnings("unused")
@@ -43,7 +43,7 @@ public class Ceo extends Employee {
 	
 	@Override
 	public String toString() {
-		return "ID: " + this.getId() + "Employee ID: " + this.getEmployeeId() + " Employee name: " + this.getName() + " with Role: CEO " + "\nSubordinate List: " + this.managerList.toString() + "\n";
+		return "ID: " + this.getId() + " Employee ID: " + this.getEmployeeId() + " Employee name: " + this.getName() + " with Role: CEO " + "\nSubordinate List: " + this.managerList.toString() + "\n";
 	}
 
 	@Override

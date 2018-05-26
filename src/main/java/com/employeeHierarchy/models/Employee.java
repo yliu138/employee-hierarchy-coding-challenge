@@ -62,9 +62,8 @@ public abstract class Employee {
 		this.managerList = new LinkedList<Long>();
 	} //JPA
 	
-	public Employee(long id, long employeeId, String name, long managerId) {
+	public Employee(long employeeId, String name, long managerId) {
 		super();
-		this.id = id;
 		this.employeeId = employeeId;
 		this.name = name;
 		this.managerId = managerId;
@@ -135,6 +134,6 @@ public abstract class Employee {
 	
 	@Override
 	public String toString() {
-		return "ID: " + this.id + "Employee ID: " + this.employeeId + " Employee name: " + this.name + "\nSubordinate List: " + this.managerList.toString() + "\n";
+		return "ID: " + this.id + " Employee ID: " + this.employeeId + " Employee name: " + this.name + "\nSubordinate List: " + this.managerList.toString() + "\n";
 	}
 }

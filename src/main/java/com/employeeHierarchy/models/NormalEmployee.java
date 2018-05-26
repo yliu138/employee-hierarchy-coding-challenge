@@ -14,8 +14,8 @@ import javax.persistence.Entity;
 @DiscriminatorValue("NORMAL")
 public class NormalEmployee extends Employee{
 
-	public NormalEmployee(long id, long employeeId, String name, long managerId) {
-		super(id, employeeId, name, managerId);
+	public NormalEmployee(long employeeId, String name, long managerId) {
+		super(employeeId, name, managerId);
 	}
 	
 	@SuppressWarnings("unused")

@@ -3,7 +3,7 @@
  */
 package com.employeeHierarchy.repo;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -16,5 +16,5 @@ import com.employeeHierarchy.models.Employee;
  */
 @Repository
 public interface EmployeeRepo extends JpaRepository<Employee, Long> {
-	Collection<Employee> findEmployeeByName(String name);
+	List<Employee> findEmployeeByName(String name);
 }
