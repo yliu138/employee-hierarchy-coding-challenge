@@ -188,6 +188,30 @@ public class EmployeeControllerTest {
 	}
 	
 	@Test
+	public void whenGetMap_employeeWithOneMoreSubordinateToLeafNodeOfDavid() throws Exception{
+		//To set up the mock response
+		Employee test7 = new NormalEmployee(600, "Andy", 190);
+		test7.setId(8);
+		this.employeeList.add(test7);
+		
+		Mockito.when(this.employeeRepo.findAll())
+			.thenReturn(this.employeeList);
+		
+		this.mockMvc.perform(get("/employee/map"))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("$.map.600.employeeId", is(600)))
+		.andExpect(jsonPath("$.map.600.name", is("Andy")))
+		.andExpect(jsonPath("$.map.600.subordinateList", hasSize(0)))
+		.andExpect(jsonPath("$.map.600.managerList", hasSize(1)))
+		.andExpect(jsonPath("$.map.600.managerList", contains(190)))
+		.andExpect(jsonPath("$.map.600.ceo", is(false)))
+		.andExpect(jsonPath("$.map.600.validEmployee", is(true)))
+		.andExpect(jsonPath("$.map.190.subordinateList", hasSize(1)))
+		.andExpect(jsonPath("$.map.190.subordinateList", contains(600)));
+	}
+	
+	@Test
 	public void whenGetMap_allUnvalidEmployee_returnWithAllEmptySubordinateManagerLists() throws Exception {
 		//To set up the mock response
 		Mockito.when(this.employeeRepo.findAll())
