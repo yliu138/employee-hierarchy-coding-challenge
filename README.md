@@ -39,7 +39,16 @@ You can view the employee hierarchy visually by accessing the root path: http://
 	mvn clean test
 ```
 
-Eclipse
+### h2 test
+There are some pre-populated data in data.sql under the folder resources/. Please feel free to add more tests or modified the tests manually as well by accessing the h2 console: http://localhost:8080/h2-console. 
+
+Remember to put `jdbc:h2:mem:testdb` in the JDBC URL field, and hit "Connect" directly
+
+Add more data running e.g., 
+```SQL
+	insert into employee(employeeId, name, managerId)
+	values(600, 'Andy', 190);
+```
 
 ## Design pattern used
 1. IoC: mainly depedency injection
