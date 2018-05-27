@@ -22,7 +22,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author leo liu
- *
+ * Employee is the abstract class which holds the template all Employee types,
+ * which includes: CEO, NormalEmployee and InvalidEmployee
  */
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -118,8 +119,6 @@ public abstract class Employee {
 		}
 	}
 	
-	// overwrite
-	public abstract void addSubordinateList(Employee s);
 	
 	public void addManagerList(long id) {
 		if (id > 0) {
@@ -127,6 +126,8 @@ public abstract class Employee {
 		}
 	}
 	
+	// overwrite
+	public abstract void addSubordinateList(Employee s);
 	public abstract void addManagerList(Employee m);
 	
 	public abstract boolean isCeo();

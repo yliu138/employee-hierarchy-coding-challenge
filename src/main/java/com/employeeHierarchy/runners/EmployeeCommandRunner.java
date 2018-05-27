@@ -12,7 +12,8 @@ import com.employeeHierarchy.repo.EmployeeRepo;
 
 /**
  * @author leoliu
- *
+ * This class mainly holds the logic for first running the server
+ * 
  */
 @Component
 public class EmployeeCommandRunner implements CommandLineRunner{
