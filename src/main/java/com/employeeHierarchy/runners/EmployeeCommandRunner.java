@@ -21,9 +21,12 @@ public class EmployeeCommandRunner implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
+		System.out.println("Printing all the employees ===");
 		for (Employee e: this.employeeRepo.findAll()) {
 			System.out.println(e.toString());
 		}
+		
+		System.out.println("All available APIs:\n/employee/map: list the employee hierarchy. \n/employee: list all the employees");
 	}
 
 }
