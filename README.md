@@ -19,12 +19,20 @@ src/main/resources/static/: Serves as the Angular 2+ front-end (This is a build 
 8. Webpack
 
 ## How to start
-Use this code to start the back end
+### Terminal
+1. Install maven 
+2. Use this code to start the back end
 ```java
 	mvn spring-boot:run -q
 ```
 
-You can view the employee hierarchy visually by accessing the root path: http://localhost:8080(or other ports)
+### Eclipse
+1. Make sure maven is in the environment path.
+2. Import this project into Eclipse
+3. In the quick access, normally on the top right corner, type in run Spring Boot app.
+4. You will be able to run the application 
+
+After server is running, you can view the employee hierarchy visually by accessing the root path: http://localhost:8080(or other ports)
 
 ## Test
 ### Back-end test

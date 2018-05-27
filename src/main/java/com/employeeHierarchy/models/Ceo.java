@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 
 /**
  * @author leoliu
- *
+ * CEO is the top level of the employee hierarchy, whose manager id is assumed to be 0
  */
 @Entity
 @DiscriminatorValue("CEO")
@@ -52,7 +52,8 @@ public class Ceo extends Employee {
 			this.subordinateList.add(s.getEmployeeId());
 		}
 	}
-
+	
+	//CEO is assumed to have no manager, so we basically do nothing here.
 	@Override
 	public void addManagerList(Employee m) {
 		// DO NOTHING

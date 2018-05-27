@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * @author leoliu
- *
+ * Custom exception: 
+ * Status code: 500
+ * Error message: Malformed data
  */
 @ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR, reason="Malformed data")
 public class InvalidDataException extends RuntimeException{

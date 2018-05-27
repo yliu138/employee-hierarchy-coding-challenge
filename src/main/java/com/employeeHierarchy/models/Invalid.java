@@ -10,7 +10,8 @@ import javax.persistence.Entity;
 
 /**
  * @author leoliu
- *
+ * Invalid employees are assumed to be those whose employee ids are no longer valid, and are recorded as any number that is under 0; 
+ * Please see the Assumption section in the README file
  */
 @Entity
 @DiscriminatorValue("INVALID")
@@ -24,7 +25,8 @@ public class Invalid extends Employee {
 	private Invalid() {
 		super();
 	}
-
+	
+	//Following methods should do nothing as invalid users are assumed to have no relationship with others
 	@Override
 	public void addSubordinateList(Employee s) {
 		// DO NOTHING

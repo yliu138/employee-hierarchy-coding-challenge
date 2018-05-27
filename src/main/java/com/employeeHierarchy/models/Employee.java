@@ -126,7 +126,7 @@ public abstract class Employee {
 		}
 	}
 	
-	// overwrite
+	// overwrite: abstract methods: this is abstract as these methods vary across different classes.
 	public abstract void addSubordinateList(Employee s);
 	public abstract void addManagerList(Employee m);
 	

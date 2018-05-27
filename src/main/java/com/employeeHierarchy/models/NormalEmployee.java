@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 
 /**
  * @author leoliu
- *
+ * Any valid employee under CEO
  */
 @Entity
 @DiscriminatorValue("NORMAL")
