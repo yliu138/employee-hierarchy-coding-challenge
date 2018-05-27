@@ -5,7 +5,7 @@ insert into employee(employeeId, name, managerId)
 	values(220, 'Martin', 100);
 
 insert into employee(employeeId, name, managerId)
-	values(150, 'Jamie', null);
+	values(150, 'Jamie', 0);
 
 insert into employee(employeeId, name, managerId)
 	values(275, 'Alex', 100);
@@ -15,3 +15,6 @@ insert into employee(employeeId, name, managerId)
 
 insert into employee(employeeId, name, managerId)
 	values(190, 'David', 400);
+	
+insert into employee(employeeId, name, managerId)
+	values(-1, 'Tom', 400);
